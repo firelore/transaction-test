@@ -1,0 +1,38 @@
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+dependencies {
+	def VERSIONS = [
+		SPRING: "4.0.9.RELEASE",
+		SPRING_DATA: "1.7.2.RELEASE",
+		ECLIPSELINK: "2.5.2",
+	]
+
+	compile(
+		'org.codehaus.groovy:groovy-all:2.4.3',
+		'javax.inject:javax.inject:1',
+		"org.springframework:spring-webmvc:${VERSIONS.SPRING}",
+		"org.springframework:spring-orm:${VERSIONS.SPRING}",
+		"org.springframework:spring-aop:${VERSIONS.SPRING}",
+		"org.springframework:spring-context-support:${VERSIONS.SPRING}",
+		"org.springframework:spring-aspects:${VERSIONS.SPRING}",
+		"org.springframework.data:spring-data-jpa:${VERSIONS.SPRING_DATA}",
+		"org.eclipse.persistence:eclipselink:${VERSIONS.ECLIPSELINK}"
+	)
+	
+	providedCompile(
+		'org.slf4j:slf4j-api:1.7.10',
+		'org.slf4j:jcl-over-slf4j:1.7.10',
+		'com.microsoft.sqlserver:sqljdbc4:4.0.2206.100',
+		'javax.servlet:javax.servlet-api:3.1.0',
+		'geronimo-spec:geronimo-spec-j2ee:1.4-rc4',
+		'org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1'
+	)
+}
+
