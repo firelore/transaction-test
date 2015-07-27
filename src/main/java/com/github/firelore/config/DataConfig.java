@@ -40,6 +40,9 @@ public class DataConfig implements TransactionManagementConfigurer {
 		jpaProperties.put(PersistenceUnitProperties.LOGGING_LEVEL, JavaLog.WARNING_LABEL);
 		jpaProperties.put(PersistenceUnitProperties.CATEGORY_LOGGING_LEVEL_ + JavaLog.CONNECTION, JavaLog.CONFIG_LABEL);
 		jpaProperties.put(PersistenceUnitProperties.CATEGORY_LOGGING_LEVEL_ + JavaLog.SQL, JavaLog.FINEST_LABEL);
+		jpaProperties.put("javax.persistence.schema-generation.database.action", "drop-and-create");
+		jpaProperties.put("javax.persistence.schema-generation.scripts.create-target", "create.ddl");
+		jpaProperties.put("javax.persistence.sql-load-script-source", "insert.sql");
 		
 		return jpaProperties;
 	}
@@ -53,8 +56,8 @@ public class DataConfig implements TransactionManagementConfigurer {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		EclipseLinkJpaVendorAdapter adapter = new EclipseLinkJpaVendorAdapter();
 		adapter.setShowSql(true);
-		adapter.setDatabase(Database.SQL_SERVER);
-		adapter.setDatabasePlatform("org.eclipse.persistence.platform.database.SQLServerPlatform");
+		adapter.setDatabase(Database.H2);
+		adapter.setDatabasePlatform("org.eclipse.persistence.platform.database.H2Platform");
 		return adapter;
 	}
 	
