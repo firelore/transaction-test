@@ -9,11 +9,11 @@ The DataSource definition in `$CATALINA_HOME/conf/tomee.xml` is as follows:
 	DataSourceCreator=dbcp
 	JtaManaged=true
 
-	DriverClassName=com.microsoft.sqlserver.jdbc.SQLServerXADataSource
-	UserName=<username>
-	Password=<password>
-	Url=<MS SQL 2005 connection string>
-	ValidationQuery=SELECT 1
-	DefaultTransactionIsolation=SERIALIZABLE
+    DriverClassName=org.h2.Driver
+    UserName=sa
+    Password=sa
+    Url=jdbc:h2:~/transaction-test
+    ValidationQuery=SELECT 1
+    DefaultTransactionIsolation=SERIALIZABLE
 </Resource>
 ```
